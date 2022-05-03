@@ -27,7 +27,7 @@ An elegant Flutter candlesticks chart
     )
 ```
 
-![Non scrollable](https://github.com/AdrienAudouard/flutter_candlestick/tree/main/readme_images/non_scrollable.png)
+![Non scrollable](https://github.com/AdrienAudouard/flutter_candlestick/blob/main/readme_images/non_scrollable.png?raw=true)
 
 ### Scrollable chart
 
@@ -54,4 +54,4 @@ An elegant Flutter candlesticks chart
     )
 ```
 
-![Scrollable](https://github.com/AdrienAudouard/flutter_candlestick/tree/main/readme_images/candlestick.gif)
+![Scrollable](https://github.com/AdrienAudouard/flutter_candlestick/blob/main/readme_images/candlestick.gif?raw=true)
