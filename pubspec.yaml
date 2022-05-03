@@ -1,6 +1,6 @@
 name: flutter_simple_candlesticks
 description: An elegant Flutter candlesticks chart
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/AdrienAudouard/flutter_candlestick
 
 environment:

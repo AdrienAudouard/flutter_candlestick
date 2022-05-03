@@ -2,20 +2,26 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/models/hight_and_low.dart';
 import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_container/candlesticks_container.dart';
 
 class CandlesticksScrollableContainer extends CandlesticksContainer {
   const CandlesticksScrollableContainer(
-      {required CandlestickBuilder candlestickBuilder, required List<Candlestick> candlesticks})
-      : super(candlestickBuilder: candlestickBuilder, candlesticks: candlesticks);
+      {required CandlestickBuilder candlestickBuilder,
+      required List<Candlestick> candlesticks,
+      required Function(HightAndLow) onHightAndLowChange})
+      : super(
+            candlestickBuilder: candlestickBuilder,
+            candlesticks: candlesticks,
+            onHightAndLowChange: onHightAndLowChange);
 
   @override
   State<CandlesticksScrollableContainer> createState() => _CandlesticksScrollableContainerState();
 }
 
 class _CandlesticksScrollableContainerState extends State<CandlesticksScrollableContainer> {
-  final _hightAndLow = ValueNotifier(const _HightAndLow(hight: 0, low: 0));
+  final _hightAndLow = ValueNotifier(const HightAndLow(hight: 0, low: 0));
   late final ScrollController _scrollController;
   late final double _candlestickWidth = 50;
 
@@ -25,7 +31,12 @@ class _CandlesticksScrollableContainerState extends State<CandlesticksScrollable
   void initState() {
     final allTimeHight = CandlesticksUtils.getAllTimeHight(widget.candlesticks);
     final allTimeLow = CandlesticksUtils.getAllTimeLow(widget.candlesticks);
-    _hightAndLow.value = _HightAndLow(hight: allTimeHight, low: allTimeLow);
+
+    _hightAndLow.addListener(() {
+      widget.onHightAndLowChange(_hightAndLow.value);
+    });
+
+    _hightAndLow.value = HightAndLow(hight: allTimeHight, low: allTimeLow);
 
     _scrollController = ScrollController(initialScrollOffset: widget.candlesticks.length * _candlestickWidth);
     _scrollController.addListener(_scrollControllerListener);
@@ -38,7 +49,7 @@ class _CandlesticksScrollableContainerState extends State<CandlesticksScrollable
     return LayoutBuilder(builder: (context, constraint) {
       _widgetWidth = constraint.maxWidth;
 
-      return ValueListenableBuilder<_HightAndLow>(
+      return ValueListenableBuilder<HightAndLow>(
           valueListenable: _hightAndLow,
           builder: (context, value, _) {
             return ListView(
@@ -58,8 +69,8 @@ class _CandlesticksScrollableContainerState extends State<CandlesticksScrollable
   void _scrollControllerListener() {
     final onScreen = _getVisibleCandlesticks(_scrollController.offset);
 
-    _hightAndLow.value = _HightAndLow(
-        hight: CandlesticksUtils.getAllTimeHight(onScreen), low: CandlesticksUtils.getAllTimeLow(onScreen));
+    _hightAndLow.value =
+        HightAndLow(hight: CandlesticksUtils.getAllTimeHight(onScreen), low: CandlesticksUtils.getAllTimeLow(onScreen));
   }
 
   List<Candlestick> _getVisibleCandlesticks(double offset) {
@@ -75,19 +86,4 @@ class _CandlesticksScrollableContainerState extends State<CandlesticksScrollable
 
     _scrollController.removeListener(_scrollControllerListener);
   }
-}
-
-class _HightAndLow {
-  final num hight;
-  final num low;
-
-  const _HightAndLow({required this.hight, required this.low});
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is _HightAndLow && runtimeType == other.runtimeType && hight == other.hight && low == other.low;
-
-  @override
-  int get hashCode => hight.hashCode ^ low.hashCode;
 }

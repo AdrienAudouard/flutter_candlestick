@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/models/hight_and_low.dart';
 import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_container/candlesticks_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_container/candlesticks_non_scrollable_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_container/candlesticks_scrollable_container.dart';
 import 'package:flutter_simple_candlesticks/src/widgets/candlestick_lines/candlestick_lines.dart';
 import 'package:flutter_simple_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
-import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_container.dart';
-import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_non_scrollable_container.dart';
-import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_scrollable_container.dart';
 
 typedef ValueMapper<T> = num Function(T);
 typedef ValueDateMapper<T> = DateTime Function(T);
@@ -58,8 +59,8 @@ class CandlesticksChart<T> extends StatefulWidget {
 
 class _CandlesticksChartState<T> extends State<CandlesticksChart<T>> {
   late final List<Candlestick> candlesticks;
-  late final num allTimeHight;
-  late final num allTimeLow;
+  late num allTimeHight;
+  late num allTimeLow;
 
   @override
   void initState() {
@@ -101,10 +102,22 @@ class _CandlesticksChartState<T> extends State<CandlesticksChart<T>> {
 
   CandlesticksContainer _buildContainer() {
     if (widget.options.isScrollable) {
-      return CandlesticksScrollableContainer(candlestickBuilder: _buildCandlestick, candlesticks: candlesticks);
+      return CandlesticksScrollableContainer(
+        candlestickBuilder: _buildCandlestick,
+        candlesticks: candlesticks,
+        onHightAndLowChange: _onHightAndLowChange,
+      );
     }
 
-    return CandlesticksNonScrollableContainer(candlestickBuilder: _buildCandlestick, candlesticks: candlesticks);
+    return CandlesticksNonScrollableContainer(
+        candlestickBuilder: _buildCandlestick, candlesticks: candlesticks, onHightAndLowChange: _onHightAndLowChange);
+  }
+
+  void _onHightAndLowChange(HightAndLow hightAndLow) {
+    setState(() {
+      allTimeHight = hightAndLow.hight;
+      allTimeLow = hightAndLow.low;
+    });
   }
 
   CandlestickWidget _buildCandlestick(Candlestick candlestick, num hight, num low) {

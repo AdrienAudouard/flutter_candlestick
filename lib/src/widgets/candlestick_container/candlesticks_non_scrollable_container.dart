@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/models/hight_and_low.dart';
 import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_container/candlesticks_container.dart';
 
 class CandlesticksNonScrollableContainer extends CandlesticksContainer {
   const CandlesticksNonScrollableContainer(
-      {required CandlestickBuilder candlestickBuilder, required List<Candlestick> candlesticks})
-      : super(candlestickBuilder: candlestickBuilder, candlesticks: candlesticks);
+      {required CandlestickBuilder candlestickBuilder,
+      required List<Candlestick> candlesticks,
+      required Function(HightAndLow) onHightAndLowChange})
+      : super(
+            candlestickBuilder: candlestickBuilder,
+            candlesticks: candlesticks,
+            onHightAndLowChange: onHightAndLowChange);
 
   @override
   State<CandlesticksNonScrollableContainer> createState() => _CandlesticksNonScrollableContainer();
