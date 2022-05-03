@@ -2,22 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_candlesticks/src/models/candlestick.dart';
 import 'package:flutter_candlesticks/src/models/candlestick_style.dart';
+import 'package:flutter_candlesticks/src/widgets/painter.dart';
 
-class CandleStickPainter extends CustomPainter {
+class CandleStickPainter extends CustomPainter with Painter {
   final Candlestick candlestick;
   final CandlestickStyle candlestickStyle;
   final CandlestickStyle candlestickSelectedStyle;
   final bool isSelected;
-  final num allTimeHight;
-  final num allTimeLow;
 
-  const CandleStickPainter(
+  CandleStickPainter(
       {required this.candlestick,
       required this.candlestickSelectedStyle,
-      required this.allTimeHight,
-      required this.allTimeLow,
+      required num allTimeHight,
+      required num allTimeLow,
       required this.isSelected,
-      required this.candlestickStyle});
+      required this.candlestickStyle}) {
+    this.allTimeLow = allTimeLow;
+    this.allTimeHight = allTimeHight;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -61,14 +63,6 @@ class CandleStickPainter extends CustomPainter {
 
   num getCloseY(Size size) {
     return getYValue(size, candlestick.close);
-  }
-
-  num getYValue(Size size, num value) {
-    return size.height - ((value - allTimeLow) / yMax) * size.height;
-  }
-
-  num get yMax {
-    return allTimeHight - allTimeLow;
   }
 
   @override

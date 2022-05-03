@@ -35,7 +35,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     const style = CandlestickChartStyle(
-        yLegendStyle: CandlestickChartYLegendStyle(textStyle: TextStyle(color: Colors.white), numberOfLabels: 5),
+        yLegendStyle: CandlestickChartYLegendStyle(
+            textStyle: TextStyle(color: Colors.white),
+            numberOfLabels: 5,
+            lineStyle: CandlestickChartLineStyle(width: 1, color: Colors.white)),
+        candlestickStyle: CandlestickStyle(bullishColor: Color(0xFF38bbbf), bearishColor: Color(0xFFed7b9e)),
+        candlestickSelectedStyle: CandlestickStyle(bullishColor: Color(0xff25787b), bearishColor: Color(0xff9d4963)));
+
+    const style2 = CandlestickChartStyle(
+        yLegendStyle: CandlestickChartYLegendStyle(
+            textStyle: TextStyle(color: Colors.white),
+            numberOfLabels: 5,
+            lineStyle: CandlestickChartDashedLineStyle(width: 1, color: Colors.white)),
         candlestickStyle: CandlestickStyle(bullishColor: Color(0xFF38bbbf), bearishColor: Color(0xFFed7b9e)),
         candlestickSelectedStyle: CandlestickStyle(bullishColor: Color(0xff25787b), bearishColor: Color(0xff9d4963)));
 
@@ -63,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               CandlesticksChart<CandleModel>(
                 height: 200,
                 data: data,
-                style: style,
+                style: style2,
                 getHightCallback: (e) => e.hight,
                 getCloseCallback: (e) => e.close,
                 getLowCallback: (e) => e.low,

@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_candlesticks/flutter_candlesticks.dart';
 import 'package:flutter_candlesticks/src/models/candlestick.dart';
-import 'package:flutter_candlesticks/src/models/candlestick_chart_options.dart';
 import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_widget.dart';
+import 'package:flutter_candlesticks/src/widgets/candlestick_lines/candlestick_lines.dart';
+import 'package:flutter_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
 import 'package:flutter_candlesticks/src/widgets/candlesticks_container.dart';
 import 'package:flutter_candlesticks/src/widgets/candlesticks_non_scrollable_container.dart';
 import 'package:flutter_candlesticks/src/widgets/candlesticks_scrollable_container.dart';
 
+typedef ValueMapper<T> = num Function(T);
+typedef ValueDateMapper<T> = DateTime Function(T);
+
 class CandlesticksChart<T> extends StatefulWidget {
+  /// List of candlestick to display
   final List<T> data;
+
+  /// Height of the chart
   final double height;
+
+  /// Style of the chart
   final CandlestickChartStyle style;
+
+  /// Options of the chart
   final CandlestickChartOptions options;
-  final num Function(T) getLowCallback;
-  final num Function(T) getHightCallback;
-  final num Function(T) getOpenCallback;
-  final num Function(T) getCloseCallback;
-  final DateTime Function(T) getTimeCallback;
+
+  /// Mapper function used to get the low value of each candle
+  final ValueMapper<T> getLowCallback;
+
+  /// Mapper function used to get the hight value of each candle
+  final ValueMapper<T> getHightCallback;
+
+  /// Mapper function used to get the open value of each candle
+  final ValueMapper<T> getOpenCallback;
+
+  /// Mapper function used to get the close value of each candle
+  final ValueMapper<T> getCloseCallback;
+
+  /// Mapper function used to get the date of each candle
+  final ValueDateMapper<T> getTimeCallback;
 
   const CandlesticksChart(
       {required this.data,
@@ -52,13 +72,30 @@ class _CandlesticksChartState<T> extends State<CandlesticksChart<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final legendValues = _getLegendValues(allTimeHight, allTimeLow, widget.style.yLegendStyle);
+
     return SizedBox(
       width: double.infinity,
       height: widget.height,
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [Flexible(child: _buildContainer()), _buildYLegend(allTimeHight, allTimeLow)],
+        children: [Flexible(child: _buildChart(legendValues)), _buildYLegend(legendValues)],
       ),
+    );
+  }
+
+  Widget _buildChart(List<num> legendValues) {
+    return Stack(
+      children: [
+        if (widget.style.yLegendStyle.lineStyle != null)
+          CandlestickLines(
+            allTimeHight: allTimeHight,
+            allTimeLow: allTimeLow,
+            legendValues: legendValues,
+            lineStyle: widget.style.yLegendStyle.lineStyle!,
+          ),
+        _buildContainer()
+      ],
     );
   }
 
@@ -79,35 +116,27 @@ class _CandlesticksChartState<T> extends State<CandlesticksChart<T>> {
     );
   }
 
-  Widget _buildYLegend(num allTimeHight, num allTimeLow) {
+  Widget _buildYLegend(List<num> values) {
     final style = widget.style.yLegendStyle;
 
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      verticalDirection: VerticalDirection.up,
+      children: values
+          .map((e) => Text(CandlesticksUtils.formatCandlestickValue(e, widget.style.yLegendStyle.fractionDigits),
+              style: style.textStyle))
+          .toList(),
+    );
+  }
+
+  List<num> _getLegendValues(num allTimeHight, num allTimeLow, CandlestickChartYLegendStyle style) {
     final interval = (allTimeHight - allTimeLow) / 4;
     final values = <num>[];
 
     for (var i = 0; i < style.numberOfLabels; i++) {
       values.add(allTimeLow + interval * i);
     }
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      verticalDirection: VerticalDirection.up,
-      children: values
-          .map((e) =>
-              Text(CandlesticksUtils.formatCandlestickValue(e, widget.style.fractionDigits), style: style.textStyle))
-          .toList(),
-    );
-  }
-
-  Widget _mapCandleToWidget(Candlestick candlestick) {
-    return Expanded(
-        child: CandlestickWidget(
-          candlestick: candlestick,
-          allTimeHight: allTimeHight,
-          allTimeLow: allTimeLow,
-          chartStyle: widget.style,
-        ),
-        flex: 1);
+    return values;
   }
 
   List<Candlestick> _mapDataToCandlesticks() {

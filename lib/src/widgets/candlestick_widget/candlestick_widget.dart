@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_candlesticks/flutter_candlesticks.dart';
 import 'package:flutter_candlesticks/src/models/candlestick.dart';
 import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_painter.dart';
+import 'package:flutter_candlesticks/src/widgets/candlestick_widget/candlestick_painter.dart';
 
 class CandlestickWidget extends StatelessWidget {
   final _isSelected = ValueNotifier(false);
@@ -43,7 +43,7 @@ class CandlestickWidget extends StatelessWidget {
         child: ValueListenableBuilder<bool>(
             valueListenable: _isSelected,
             builder: (_, isSelected, __) {
-              return Container(
+              return SizedBox(
                 height: double.infinity,
                 child: CustomPaint(
                     painter: CandleStickPainter(
@@ -60,6 +60,6 @@ class CandlestickWidget extends StatelessWidget {
   }
 
   String _format(num value) {
-    return CandlesticksUtils.formatCandlestickValue(value, chartStyle.fractionDigits);
+    return CandlesticksUtils.formatCandlestickValue(value, chartStyle.yLegendStyle.fractionDigits);
   }
 }

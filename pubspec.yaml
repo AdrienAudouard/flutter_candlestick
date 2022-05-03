@@ -1,7 +1,7 @@
 name: flutter_candlesticks
-description: A new Flutter package project.
+description: An elegant Flutter candlesticks chart
 version: 1.0.0
-homepage:
+homepage: https://github.com/AdrienAudouard/flutter_candlestick
 
 environment:
   sdk: ">=2.15.1 <3.0.0"

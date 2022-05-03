@@ -63,7 +63,7 @@ class _CandlesticksScrollableContainerState extends State<CandlesticksScrollable
   }
 
   List<Candlestick> _getVisibleCandlesticks(double offset) {
-    final firstIndex = offset == 0 ? 0 : max((offset / _candlestickWidth).toInt(), 0);
+    final firstIndex = offset == 0 ? 0 : max(offset ~/ _candlestickWidth, 0);
     final numberOfCandlestickInScreen = (_widgetWidth / _candlestickWidth).ceil();
     final end = min(firstIndex + numberOfCandlestickInScreen, widget.candlesticks.length - 1);
     return widget.candlesticks.sublist(firstIndex, end);

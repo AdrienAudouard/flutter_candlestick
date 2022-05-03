@@ -1,39 +1,57 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+## Flutter candlesticks
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+An elegant Flutter candlesticks chart
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## Example
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Non scrollable chart
 
 ```dart
-const like = 'sample';
+    const style = CandlestickChartStyle(
+        yLegendStyle: CandlestickChartYLegendStyle(
+            textStyle: TextStyle(color: Colors.white),
+            numberOfLabels: 5,
+            lineStyle: CandlestickChartDashedLineStyle(width: 1, color: Colors.white)),
+        candlestickStyle: CandlestickStyle(bullishColor: Color(0xFF38bbbf), bearishColor: Color(0xFFed7b9e)),
+        candlestickSelectedStyle: CandlestickStyle(bullishColor: Color(0xff25787b), bearishColor: Color(0xff9d4963)));
+    
+    CandlesticksChart<CandleModel>(
+        height: 200,
+        data: data,
+        style: style,
+        getHightCallback: (e) => e.hight,
+        getCloseCallback: (e) => e.close,
+        getLowCallback: (e) => e.low,
+        getOpenCallback: (e) => e.open,
+        getTimeCallback: (e) => e.date,
+    )
 ```
 
-## Additional information
+![Non scrollable](readme_images/non_scrollable.png)
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+### Scrollable chart
+
+```dart
+    const style = CandlestickChartStyle(
+      yLegendStyle: CandlestickChartYLegendStyle(
+      textStyle: TextStyle(color: Colors.white),
+      numberOfLabels: 5,
+      lineStyle: CandlestickChartLineStyle(width: 1, color: Colors.white)),
+      candlestickStyle: CandlestickStyle(bullishColor: Color(0xFF38bbbf), bearishColor: Color(0xFFed7b9e)),
+      candlestickSelectedStyle: CandlestickStyle(bullishColor: Color(0xff25787b), bearishColor: Color(0xff9d4963))
+    );
+
+    CandlesticksChart<CandleModel>(
+      height: 200,
+      data: data,
+      style: style,
+      options: const CandlestickChartOptions(isScrollable: true),
+      getHightCallback: (e) => e.hight,
+      getCloseCallback: (e) => e.close,
+      getLowCallback: (e) => e.low,
+      getOpenCallback: (e) => e.open,
+      getTimeCallback: (e) => e.date,
+    )
+```
+
+![Scrollable](readme_images/candlestick.gif)

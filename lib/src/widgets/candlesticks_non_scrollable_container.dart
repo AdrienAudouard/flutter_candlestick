@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_candlesticks/src/models/candlestick.dart';
 import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
 import 'package:flutter_candlesticks/src/widgets/candlesticks_container.dart';

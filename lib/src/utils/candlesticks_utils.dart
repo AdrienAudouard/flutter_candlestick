@@ -6,9 +6,9 @@ class CandlesticksUtils {
   static num getAllTimeHight(List<Candlestick> candlesticks) {
     var ath = candlesticks[0].hight;
 
-    candlesticks.forEach((element) {
+    for (var element in candlesticks) {
       ath = max(ath, element.hight);
-    });
+    }
 
     return ath;
   }
@@ -16,9 +16,9 @@ class CandlesticksUtils {
   static num getAllTimeLow(List<Candlestick> candlesticks) {
     var atl = candlesticks[0].low;
 
-    candlesticks.forEach((element) {
+    for (var element in candlesticks) {
       atl = min(atl, element.low);
-    });
+    }
 
     return atl;
   }

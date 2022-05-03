@@ -22,7 +22,7 @@ class CandleModel {
 }
 
 final data = [
-  CandleModel(date: DateTime.now(), hight: 50, low: 10, open: 2, close: 30),
+  CandleModel(date: DateTime.now(), hight: 50, low: 10, open: 10, close: 30),
   CandleModel(date: DateTime.now(), hight: 70, low: 40, open: 55, close: 45),
   CandleModel(date: DateTime.now(), hight: 20, low: 10, open: 12, close: 18),
   CandleModel(date: DateTime.now(), hight: 30, low: 10, open: 20, close: 25),
