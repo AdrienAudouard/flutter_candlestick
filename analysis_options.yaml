@@ -1,0 +1,87 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+
+  errors:
+    sized_box_shrink_expand: error
+    use_decorated_box: error
+    avoid_final_parameters: error
+    prefer_initializing_formals: error
+    unnecessary_late: error
+    no_leading_underscores_for_local_identifiers: warning
+    unnecessary_statements: error
+    prefer_const_constructors: error
+    prefer_const_declarations: error
+    prefer_const_constructors_in_immutables: error
+    prefer_const_literals_to_create_immutables: error
+    prefer_final_fields: error
+    prefer_final_locals: error
+    avoid_unused_constructor_parameters: error
+    always_specify_types: error
+    curly_braces_in_flow_control_structures: error
+    library_prefixes: error
+    prefer_conditional_assignment: error
+    prefer_if_null_operators: error
+    library_names: error
+    prefer_is_empty: error
+    prefer_is_not_empty: error
+    prefer_spread_collections: error
+    recursive_getters: error
+    use_rethrow_when_possible: error
+    always_declare_return_types: warning
+    avoid_print: warning
+    prefer_contains: warning
+    prefer_single_quotes: warning
+    cancel_subscriptions: warning
+    omit_local_variable_types: warning
+    avoid_unnecessary_containers: warning
+    always_put_required_named_parameters_first: warning
+    constant_identifier_names: info
+
+
+linter:
+  rules:
+    # Enabled
+    use_rethrow_when_possible: true
+    recursive_getters: true
+    prefer_spread_collections: true
+    always_declare_return_types: true
+    prefer_is_empty: true
+    prefer_is_not_empty: true
+    library_prefixes: true
+    prefer_if_null_operators: true
+    library_names: true
+    prefer_conditional_assignment: true
+    prefer_contains: true
+    annotate_overrides: true
+    always_use_package_imports: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_const_declarations: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_constructors: true
+    avoid_unnecessary_containers: true
+    valid_regexps: true
+    unnecessary_statements: true
+    cancel_subscriptions: true
+    prefer_single_quotes: true
+    avoid_print: true
+    omit_local_variable_types: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    avoid_unused_constructor_parameters: true
+    always_put_required_named_parameters_first: true
+    curly_braces_in_flow_control_structures: true
+    sized_box_shrink_expand: true
+    use_decorated_box: true
+    avoid_final_parameters: true
+    prefer_initializing_formals: true
+    unnecessary_late: true
+    no_leading_underscores_for_local_identifiers: true
+    # Disabled
+    constant_identifier_names: false
+    always_specify_types: false
+    lines_longer_than_80_chars: false
+    use_key_in_widget_constructors: false
+    use_full_hex_values_for_flutter_colors: false
