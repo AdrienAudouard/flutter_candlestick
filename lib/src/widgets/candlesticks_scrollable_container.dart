@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/src/models/candlestick.dart';
-import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_candlesticks/src/widgets/candlesticks_container.dart';
+import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_container.dart';
 
 class CandlesticksScrollableContainer extends CandlesticksContainer {
   const CandlesticksScrollableContainer(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/src/models/candlestick_chart_y_legend_style.dart';
-import 'package:flutter_candlesticks/src/models/candlestick_style.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 
 class CandlestickChartStyle {
   /// Color of each candlesticks

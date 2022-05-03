@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
-import 'package:flutter_candlesticks/src/models/candlestick.dart';
-import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_widget/candlestick_painter.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_widget/candlestick_painter.dart';
 
 class CandlestickWidget extends StatelessWidget {
   final _isSelected = ValueNotifier(false);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/src/models/candlestick_chart_line_style.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_lines/candlesticks_lines_painter.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_lines/candlesticks_lines_painter.dart';
 
 class CandlestickLines extends StatelessWidget {
   final num allTimeHight;

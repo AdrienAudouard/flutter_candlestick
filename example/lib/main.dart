@@ -1,6 +1,6 @@
 import 'package:example/data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 
 void main() {
   runApp(const MyApp());

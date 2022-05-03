@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_candlesticks/src/models/candlestick_chart_line_style.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 
 class CandlestickChartYLegendStyle {
   /// Text style of the y legend text

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
-import 'package:flutter_candlesticks/src/models/candlestick.dart';
-import 'package:flutter_candlesticks/src/utils/candlesticks_utils.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_lines/candlestick_lines.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
-import 'package:flutter_candlesticks/src/widgets/candlesticks_container.dart';
-import 'package:flutter_candlesticks/src/widgets/candlesticks_non_scrollable_container.dart';
-import 'package:flutter_candlesticks/src/widgets/candlesticks_scrollable_container.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/utils/candlesticks_utils.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_lines/candlestick_lines.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_non_scrollable_container.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlesticks_scrollable_container.dart';
 
 typedef ValueMapper<T> = num Function(T);
 typedef ValueDateMapper<T> = DateTime Function(T);

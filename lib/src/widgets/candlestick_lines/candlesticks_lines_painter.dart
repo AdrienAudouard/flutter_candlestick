@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
-import 'package:flutter_candlesticks/src/widgets/painter.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/painter.dart';
 
 class CandlestickLinesPainter extends CustomPainter with Painter {
   final List<num> legendValues;

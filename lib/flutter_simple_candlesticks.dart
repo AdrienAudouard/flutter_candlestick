@@ -1,4 +1,4 @@
-library flutter_candlestick;
+library flutter_simple_candlesticks;
 
 export 'src/models/candlestick_chart_dashed_line_style.dart';
 export 'src/models/candlestick_chart_line_style.dart';

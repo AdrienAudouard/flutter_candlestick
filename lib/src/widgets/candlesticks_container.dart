@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/src/models/candlestick.dart';
-import 'package:flutter_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
+import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/widgets/candlestick_widget/candlestick_widget.dart';
 
 typedef CandlestickBuilder = CandlestickWidget Function(Candlestick, num, num);
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 
 class CandlestickChartDashedLineStyle extends CandlestickChartLineStyle {
   /// Dash width

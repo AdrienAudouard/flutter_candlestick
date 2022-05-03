@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter_candlesticks/src/models/candlestick.dart';
+import 'package:flutter_simple_candlesticks/src/models/candlestick.dart';
 
 class CandlesticksUtils {
   static num getAllTimeHight(List<Candlestick> candlesticks) {
