@@ -1,5 +1,7 @@
 ## Flutter candlesticks
 
+![pub](https://img.shields.io/pub/v/flutter_simple_candlesticks.svg)
+
 An elegant Flutter candlesticks chart
 
 ## Example
